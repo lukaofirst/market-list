@@ -1,0 +1,19 @@
+$bg-color: #e7e7e7;
+$default-green: #27b150;
+$default-green-dark: #24a14a;
+$default-gray: #a3a3a3;
+$default-gray-dark: #535353;
+$default-orange: #ffa500;
+$default-red: #ce1654;
+$font-stack: 'Montserrat', sans-serif;
+
+@mixin setDisplay($display, $wrap, $justifyContent, $alignItems) {
+    display: $display;
+    flex-wrap: $wrap;
+    justify-content: $justifyContent;
+    align-items: $alignItems;
+}
+
+@mixin setBackground($color) {
+    background-color: $color;
+}

@@ -1,0 +1,47 @@
+@import 'config';
+@import 'reset';
+@import 'mobile';
+
+.main-header {
+    padding: 15px 2%;
+
+    .header-title {
+        text-align: center;
+        padding-bottom: 20px;
+
+        h3 {
+            font-size: 2rem;
+        }
+    }
+
+    #header-time {
+        font-size: 1.3rem;
+        @include setDisplay(flex, wrap, space-around, center);
+
+        .dayAndDate {
+            padding: 10px;
+            text-align: center;
+
+            .day {
+                margin-bottom: 10px;
+            }
+
+            .date {
+                svg {
+                    font-size: 1.5rem;
+                    margin-right: 5px;
+                }
+            }
+        }
+
+        .hours {
+            @include setDisplay(flex, wrap, space-around, center);
+            padding: 10px;
+
+            svg {
+                font-size: 1.5rem;
+                margin-right: 5px;
+            }
+        }
+    }
+}
