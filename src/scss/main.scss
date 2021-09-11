@@ -27,6 +27,7 @@
             }
 
             .date {
+                @include setDisplay(flex, wrap, center, center);
                 svg {
                     font-size: 1.5rem;
                     margin-right: 5px;
@@ -41,6 +42,167 @@
             svg {
                 font-size: 1.5rem;
                 margin-right: 5px;
+            }
+        }
+    }
+}
+
+.action-buttons {
+    padding-bottom: 15px;
+
+    .container {
+        @include setDisplay(flex, wrap, center, center);
+
+        .save-changes,
+        .delete-changes {
+            @include setDisplay(flex, wrap, center, center);
+            border-radius: 10px;
+            font-size: 1.4rem;
+            margin: 5px 15px;
+            border: 0;
+            outline: 0;
+            color: $bg-color;
+            cursor: pointer;
+
+            svg {
+                margin-right: 5px;
+            }
+        }
+
+        .save-changes {
+            padding: 15px 20px;
+            background-color: $default-green;
+        }
+
+        .delete-changes {
+            padding: 8px 16px;
+            background-color: $default-red;
+        }
+    }
+}
+
+.list-boxes {
+    padding: 0 2% 50px;
+
+    .container {
+        @include setDisplay(flex, wrap, center, center);
+
+        #list-boxes-wrapper {
+            width: 100%;
+            padding: 0 5px;
+
+            .list-box-single {
+                width: 100%;
+                margin: 10px 0;
+                padding: 0 2%;
+                height: 300px;
+                border-radius: 30px;
+                @include setBackground($default-gray);
+                @include setDisplay(flex, wrap, center, center);
+
+                .box-title {
+                    font-size: 2.3rem;
+                    padding: 0 2% 10px 2%;
+                    color: $bg-color;
+                    text-align: center;
+                }
+
+                .box-btn {
+                    width: 100%;
+                    @include setDisplay(flex, wrap, center, center);
+
+                    .minus-btn,
+                    .plus-btn {
+                        width: 60px;
+                        height: 60px;
+                        background-color: $default-orange;
+                        border-radius: 50%;
+                        cursor: pointer;
+                        @include setDisplay(flex, wrap, center, center);
+                        color: $bg-color;
+
+                        svg {
+                            font-size: 1.5rem;
+                        }
+                    }
+
+                    #quantifier {
+                        width: 60px;
+                        font-size: 2.3rem;
+                        text-align: center;
+                        margin: 5px;
+                        border: 0;
+                        outline: 0;
+                        background-color: $default-gray;
+                        color: $bg-color;
+                    }
+                }
+
+                #checkbox {
+                    .box-checkbox {
+                        width: 80px;
+                        height: 80px;
+                        margin: 10px;
+                        padding: 10px;
+                        border-radius: 50%;
+                        @include setDisplay(flex, wrap, center, center);
+                        background-color: $bg-color;
+                        cursor: pointer;
+                        transition: 0.4s ease;
+                        color: $default-gray;
+                        transition: 0.4s ease;
+
+                        svg {
+                            font-size: 2rem;
+                        }
+                    }
+                }
+            }
+
+            .takedItem {
+                background-color: $default-green;
+
+                .box-btn {
+                    display: none;
+                }
+
+                #checkbox {
+                    .box-checkbox {
+                        color: $default-green;
+                    }
+                }
+            }
+        }
+
+        #list-quantifiers-wrapper {
+            display: none;
+            width: 30%;
+            padding: 0 5px;
+            border-radius: 20px;
+            background-color: $default-green;
+
+            .list-quantifier-single {
+                width: 100%;
+                margin: 10px 0;
+                height: 300px;
+                border-radius: 30px;
+                padding: 0 5px;
+                text-align: center;
+                background-color: $bg-color;
+                @include setDisplay(flex, wrap, center, center);
+
+                .list-quantifier-text {
+                    color: $default-green;
+
+                    p {
+                        font-size: 1.5rem;
+                        padding-bottom: 10px;
+                    }
+
+                    span {
+                        font-size: 2.6rem;
+                    }
+                }
             }
         }
     }
