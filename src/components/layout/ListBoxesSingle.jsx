@@ -3,6 +3,7 @@ import { FaMinus, FaPlus, FaCheck } from 'react-icons/fa';
 
 const ListBoxesSingle = (props) => {
     const [count, setCount] = useState(1);
+    const [takedItem, setTakedItem] = useState(false);
 
     const onClick = (e) => {
         if (e.currentTarget.classList.contains('plus-btn')) {
@@ -16,8 +17,12 @@ const ListBoxesSingle = (props) => {
         }
     };
 
+    const toggleClassName = () => {
+        setTakedItem(!takedItem);
+    };
+
     return (
-        <div className='list-box-single'>
+        <div className={`list-box-single ${takedItem ? 'takedItem' : ''}`}>
             <div className='box-title'>
                 <span>{props.productsName}</span>
             </div>
@@ -31,7 +36,7 @@ const ListBoxesSingle = (props) => {
                 </div>
             </div>
             <div id='checkbox'>
-                <div className='box-checkbox'>
+                <div className='box-checkbox' onClick={toggleClassName}>
                     <FaCheck />
                 </div>
             </div>

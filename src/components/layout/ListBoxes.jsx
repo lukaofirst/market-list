@@ -22,8 +22,8 @@ const ListBoxes = () => {
         <section className='list-boxes'>
             <div className='container'>
                 <div id='list-boxes-wrapper'>
-                    {products.map((product) => (
-                        <ListBoxesSingle productsName={product.name} />
+                    {products.map((product, id) => (
+                        <ListBoxesSingle productsName={product.name} key={id} />
                     ))}
                 </div>
                 <div id='list-quantifiers-wrapper'>ocultado</div>
