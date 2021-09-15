@@ -1,12 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import ListBoxesSingle from './ListBoxesSingle';
+import ListBoxesQuantifierSingle from './ListBoxesQuantifierSingle';
 import axios from 'axios';
+import LocalStorageContext from '../../context/localStorageContext';
 
 const ListBoxes = () => {
+    const localStorageContext = useContext(LocalStorageContext);
+
+    const { hasItems, getItems, quantities } = localStorageContext;
+
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
         onLoad();
+        getItems();
         // eslint-disable-next-line
     }, []);
 
@@ -21,12 +28,22 @@ const ListBoxes = () => {
     return (
         <section className='list-boxes'>
             <div className='container'>
-                <div id='list-boxes-wrapper'>
-                    {products.map((product, id) => (
-                        <ListBoxesSingle productsName={product.name} key={id} />
-                    ))}
-                </div>
-                <div id='list-quantifiers-wrapper'>ocultado</div>
+                {hasItems === false
+                    ? products.map((product) => (
+                          <ListBoxesSingle
+                              productsName={product.name}
+                              key={product.id}
+                          />
+                      ))
+                    : products.map((product, id) => {
+                          return (
+                              <ListBoxesQuantifierSingle
+                                  productsName={product.name}
+                                  quantity={quantities[id]}
+                                  key={product.id}
+                              />
+                          );
+                      })}
             </div>
         </section>
     );
