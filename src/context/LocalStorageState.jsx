@@ -3,10 +3,12 @@ import LocalStorageContext from './localStorageContext';
 
 const LocalStorageState = (props) => {
     const [hasItems, setHasItems] = useState(false);
+    const [quantities, setQuantities] = useState([]);
+
+    let items = [];
 
     // Get items from LocalStorage
     const getItems = () => {
-        let items;
         if (localStorage.getItem('buyListQuantifiers') === null) {
             items = [];
             setHasItems(false);
@@ -14,12 +16,13 @@ const LocalStorageState = (props) => {
             // eslint-disable-next-line
             items = JSON.parse(localStorage.getItem('buyListQuantifiers'));
             setHasItems(true);
+
+            setQuantities(items);
         }
     };
 
     // Save items on LocalStorage
     const saveItems = (item) => {
-        let items;
         if (localStorage.getItem('buyListQuantifiers') === null) {
             items = [];
         } else {
@@ -58,6 +61,7 @@ const LocalStorageState = (props) => {
                 deleteItems,
                 getItems,
                 hasItems,
+                quantities,
             }}
         >
             {props.children}
