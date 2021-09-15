@@ -1,44 +1,29 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { FaSave, FaTrash } from 'react-icons/fa';
+import LocalStorageContext from '../../context/localStorageContext';
 
 const ActionButtons = () => {
-    const addItems = () => {
-        let quantifierValues = document.querySelectorAll('#quantifier');
+    const localStorageContext = useContext(LocalStorageContext);
 
-        quantifierValues.forEach((quantifier) => {
-            saveItems(quantifier.value);
-        });
-    };
+    const { hasItems, getItems, addItems, deleteItems } = localStorageContext;
 
-    const saveItems = (item) => {
-        let items;
-        if (localStorage.getItem('buyListQuantifiers') === null) {
-            items = [];
-        } else {
-            items = JSON.parse(localStorage.getItem('buyListQuantifiers'));
-        }
-
-        items.push(item);
-
-        localStorage.setItem('buyListQuantifiers', JSON.stringify(items));
-    };
-
-    const clearSavedItems = () => {
-        if (window.confirm('Você deseja apagar os dados salvos?')) {
-            localStorage.clear();
-            window.location.reload();
-        }
-    };
+    useEffect(() => {
+        getItems();
+        // eslint-disable-next-line
+    }, []);
 
     return (
         <div className='action-buttons'>
             <div className='container'>
-                <button className='save-changes' onClick={addItems}>
-                    <FaSave /> Salvar
-                </button>
-                <button className='delete-changes' onClick={clearSavedItems}>
-                    <FaTrash /> Apagar
-                </button>
+                {hasItems === false ? (
+                    <button className='save-changes' onClick={addItems}>
+                        <FaSave /> Salvar
+                    </button>
+                ) : (
+                    <button className='delete-changes' onClick={deleteItems}>
+                        <FaTrash /> Apagar
+                    </button>
+                )}
             </div>
         </div>
     );
