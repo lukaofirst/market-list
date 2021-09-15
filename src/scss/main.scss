@@ -85,123 +85,117 @@
     padding: 0 2% 50px;
 
     .container {
+        width: 100%;
         @include setDisplay(flex, wrap, center, center);
 
-        #list-boxes-wrapper {
+        .list-box-single {
             width: 100%;
-            padding: 0 5px;
+            margin: 10px 0;
+            padding: 0 2%;
+            height: 300px;
+            border-radius: 30px;
+            @include setBackground($default-gray);
+            @include setDisplay(flex, wrap, center, center);
 
-            .list-box-single {
+            .box-title {
+                font-size: 2.3rem;
+                padding: 0 2% 10px 2%;
+                color: $bg-color;
+                text-align: center;
+            }
+
+            .box-btn {
                 width: 100%;
-                margin: 10px 0;
-                padding: 0 2%;
-                height: 300px;
-                border-radius: 30px;
-                @include setBackground($default-gray);
                 @include setDisplay(flex, wrap, center, center);
 
-                .box-title {
-                    font-size: 2.3rem;
-                    padding: 0 2% 10px 2%;
-                    color: $bg-color;
-                    text-align: center;
-                }
-
-                .box-btn {
-                    width: 100%;
+                .minus-btn,
+                .plus-btn {
+                    width: 60px;
+                    height: 60px;
+                    background-color: $default-orange;
+                    border-radius: 50%;
+                    cursor: pointer;
                     @include setDisplay(flex, wrap, center, center);
+                    color: $bg-color;
 
-                    .minus-btn,
-                    .plus-btn {
-                        width: 60px;
-                        height: 60px;
-                        background-color: $default-orange;
-                        border-radius: 50%;
-                        cursor: pointer;
-                        @include setDisplay(flex, wrap, center, center);
-                        color: $bg-color;
-
-                        svg {
-                            font-size: 1.5rem;
-                        }
-                    }
-
-                    #quantifier {
-                        width: 60px;
-                        font-size: 2.3rem;
-                        text-align: center;
-                        margin: 5px;
-                        border: 0;
-                        outline: 0;
-                        background-color: $default-gray;
-                        color: $bg-color;
+                    svg {
+                        font-size: 1.5rem;
                     }
                 }
 
-                #checkbox {
-                    .box-checkbox {
-                        width: 80px;
-                        height: 80px;
-                        margin: 10px;
-                        padding: 10px;
-                        border-radius: 50%;
-                        @include setDisplay(flex, wrap, center, center);
-                        background-color: $bg-color;
-                        cursor: pointer;
-                        transition: 0.4s ease;
-                        color: $default-gray;
-                        transition: 0.4s ease;
-
-                        svg {
-                            font-size: 2rem;
-                        }
-                    }
+                #quantifier {
+                    width: 60px;
+                    font-size: 2.3rem;
+                    text-align: center;
+                    margin: 5px;
+                    border: 0;
+                    outline: 0;
+                    background-color: $default-gray;
+                    color: $bg-color;
                 }
             }
 
-            .takedItem {
-                background-color: $default-green;
+            #checkbox {
+                .box-checkbox {
+                    width: 80px;
+                    height: 80px;
+                    margin: 10px;
+                    padding: 10px;
+                    border-radius: 50%;
+                    @include setDisplay(flex, wrap, center, center);
+                    background-color: $bg-color;
+                    cursor: pointer;
+                    transition: 0.4s ease;
+                    color: $default-gray;
+                    transition: 0.4s ease;
 
-                .box-btn {
-                    display: none;
-                }
-
-                #checkbox {
-                    .box-checkbox {
-                        color: $default-green;
+                    svg {
+                        font-size: 2rem;
                     }
                 }
             }
         }
 
-        #list-quantifiers-wrapper {
-            display: none;
-            width: 30%;
-            padding: 0 5px;
-            border-radius: 20px;
+        .takedItem {
             background-color: $default-green;
 
-            .list-quantifier-single {
-                width: 100%;
-                margin: 10px 0;
-                height: 300px;
-                border-radius: 30px;
-                padding: 0 5px;
-                text-align: center;
-                background-color: $bg-color;
-                @include setDisplay(flex, wrap, center, center);
+            .box-btn {
+                display: none;
+            }
 
-                .list-quantifier-text {
+            #checkbox {
+                .box-checkbox {
                     color: $default-green;
+                }
+            }
+        }
 
-                    p {
-                        font-size: 1.5rem;
-                        padding-bottom: 10px;
-                    }
+        .list-quantifier-single {
+            width: 100%;
+            margin: 10px 0;
+            height: 300px;
+            border-radius: 30px;
+            padding: 0 5px;
+            text-align: center;
+            @include setBackground($default-gray);
+            @include setDisplay(flex, wrap, center, center);
 
-                    span {
-                        font-size: 2.6rem;
-                    }
+            .list-quantifier-text {
+                color: $bg-color;
+                @include setDisplay(flex, wrap, center, center);
+                flex-direction: column;
+
+                p {
+                    font-size: 2.5rem;
+                    padding-bottom: 10px;
+                }
+
+                span {
+                    @include setDisplay(flex, wrap, center, space-around);
+                    padding: 10px 20px;
+                    @include setBackground($default-orange);
+                    border-radius: 20px;
+                    font-size: 2.5rem;
                 }
             }
         }
