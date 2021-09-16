@@ -5,6 +5,7 @@ const LocalStorageState = (props) => {
     const [hasItems, setHasItems] = useState(false);
     const [quantities, setQuantities] = useState([]);
     const [alert, setAlert] = useState(false);
+    const [alertToFinish, setAlertToFinish] = useState(false);
 
     let items = [];
 
@@ -16,8 +17,14 @@ const LocalStorageState = (props) => {
             }, 3000);
         }
 
+        if (alertToFinish) {
+            timeout = setTimeout(() => {
+                setAlertToFinish(false);
+            }, 3000);
+        }
+
         return () => clearTimeout(timeout);
-    }, [alert]);
+    }, [alert, alertToFinish]);
 
     // Get items from LocalStorage
     const getItems = () => {
@@ -67,9 +74,20 @@ const LocalStorageState = (props) => {
 
     // Delete items from LocalStorage
     const deleteItems = () => {
-        if (window.confirm('Você deseja apagar os dados salvos?')) {
-            localStorage.clear();
-            window.location.reload();
+        let quantifierSingle = document.querySelectorAll(
+            '.list-quantifier-single'
+        );
+        let quantifierSingleTaked = document.querySelectorAll(
+            '.list-quantifier-single.takedItem2'
+        );
+
+        if (quantifierSingle.length !== quantifierSingleTaked.length) {
+            setAlertToFinish(true);
+        } else {
+            if (window.confirm('Você deseja apagar os dados salvos?')) {
+                localStorage.clear();
+                window.location.reload();
+            }
         }
     };
 
@@ -83,6 +101,7 @@ const LocalStorageState = (props) => {
                 hasItems,
                 quantities,
                 alert,
+                alertToFinish,
             }}
         >
             {props.children}

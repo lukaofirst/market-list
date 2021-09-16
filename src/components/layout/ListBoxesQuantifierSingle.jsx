@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 import { FaCheck } from 'react-icons/fa';
 
 const ListBoxesQuantifierSingle = (props) => {
-    const [takedItem, setTakedItem] = useState(false);
+    const [takedItem2, setTakedItem2] = useState(false);
 
     const toggleClassName = () => {
-        setTakedItem(!takedItem);
+        setTakedItem2(!takedItem2);
     };
 
     return (
         <div
             className={`list-quantifier-single ${
-                takedItem ? 'takedItem2' : ''
+                takedItem2 ? 'takedItem2' : ''
             }`}
         >
             <div className='list-quantifier-text'>
