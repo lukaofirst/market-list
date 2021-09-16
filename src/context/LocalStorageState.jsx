@@ -1,11 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import LocalStorageContext from './localStorageContext';
 
 const LocalStorageState = (props) => {
     const [hasItems, setHasItems] = useState(false);
     const [quantities, setQuantities] = useState([]);
+    const [alert, setAlert] = useState(false);
 
     let items = [];
+
+    useEffect(() => {
+        let timeout;
+        if (alert) {
+            timeout = setTimeout(() => {
+                setAlert(false);
+            }, 3000);
+        }
+
+        return () => clearTimeout(timeout);
+    }, [alert]);
 
     // Get items from LocalStorage
     const getItems = () => {
@@ -41,7 +53,15 @@ const LocalStorageState = (props) => {
         let quantifierValues = document.querySelectorAll('#quantifier');
 
         quantifierValues.forEach((quantifier) => {
-            saveItems(quantifier.value);
+            if (
+                quantifier.parentElement.parentElement.classList.contains(
+                    'takedItem'
+                ) === false
+            ) {
+                setAlert(true);
+            } else {
+                saveItems(quantifier.value);
+            }
         });
     };
 
@@ -62,6 +82,7 @@ const LocalStorageState = (props) => {
                 getItems,
                 hasItems,
                 quantities,
+                alert,
             }}
         >
             {props.children}

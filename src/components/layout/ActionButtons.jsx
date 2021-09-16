@@ -5,10 +5,12 @@ import LocalStorageContext from '../../context/localStorageContext';
 const ActionButtons = () => {
     const localStorageContext = useContext(LocalStorageContext);
 
-    const { hasItems, getItems, addItems, deleteItems } = localStorageContext;
+    const { hasItems, alert, getItems, addItems, deleteItems } =
+        localStorageContext;
 
     useEffect(() => {
         getItems();
+
         // eslint-disable-next-line
     }, []);
 
@@ -24,6 +26,7 @@ const ActionButtons = () => {
                         <FaTrash /> Apagar
                     </button>
                 )}
+                {alert ? <div>oi</div> : ''}
             </div>
         </div>
     );
