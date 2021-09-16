@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { FaSave, FaTrash } from 'react-icons/fa';
 import LocalStorageContext from '../../context/localStorageContext';
+import Alert from './Alert';
 
 const ActionButtons = () => {
     const localStorageContext = useContext(LocalStorageContext);
@@ -26,7 +27,7 @@ const ActionButtons = () => {
                         <FaTrash /> Apagar
                     </button>
                 )}
-                {alert ? <div>oi</div> : ''}
+                {alert ? <Alert /> : ''}
             </div>
         </div>
     );
