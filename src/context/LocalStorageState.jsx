@@ -51,13 +51,13 @@ const LocalStorageState = (props) => {
     // Add items on LocalStorage
     const addItems = () => {
         let quantifierValues = document.querySelectorAll('#quantifier');
+        let boxesSingle = document.querySelectorAll('.list-box-single');
+        let boxesSingleTaked = document.querySelectorAll(
+            '.list-box-single.takedItem'
+        );
 
         quantifierValues.forEach((quantifier) => {
-            if (
-                quantifier.parentElement.parentElement.classList.contains(
-                    'takedItem'
-                ) === false
-            ) {
+            if (boxesSingle.length !== boxesSingleTaked.length) {
                 setAlert(true);
             } else {
                 saveItems(quantifier.value);
