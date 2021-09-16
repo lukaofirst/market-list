@@ -194,15 +194,57 @@
 
                 p {
                     font-size: 2.5rem;
-                    padding-bottom: 10px;
                 }
 
                 span {
                     @include setDisplay(flex, wrap, center, space-around);
                     padding: 10px 20px;
-                    @include setBackground($default-orange);
+                    margin: 10px 0;
+                    border: 3px solid $default-red;
+                    color: $default-red;
+                    //@include setBackground($default-orange);
                     border-radius: 20px;
                     font-size: 2.5rem;
+                }
+
+                #checkbox {
+                    .box-checkbox {
+                        width: 80px;
+                        height: 80px;
+                        padding: 10px;
+                        margin: 10px;
+                        border-radius: 50%;
+                        @include setDisplay(flex, wrap, center, center);
+                        background-color: $bg-color;
+                        cursor: pointer;
+                        transition: 0.4s ease;
+                        color: $default-gray;
+                        transition: 0.4s ease;
+
+                        svg {
+                            font-size: 2.3rem;
+                        }
+                    }
+                }
+            }
+        }
+
+        .takedItem2 {
+            background-color: $default-green;
+
+            .list-quantifier-text {
+                flex-direction: row;
+
+                span {
+                    display: none;
+                }
+            }
+
+            #checkbox {
+                .box-checkbox {
+                    svg {
+                        color: $default-green;
+                    }
                 }
             }
         }
