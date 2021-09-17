@@ -251,3 +251,21 @@
         }
     }
 }
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 5px;
+    background-color: #535353;
+
+    h4 {
+        text-align: center;
+        color: #e7e7e7;
+
+        a {
+            text-decoration: none;
+            color: #27b150;
+        }
+    }
+}
