@@ -167,6 +167,11 @@
 
         .takedItem {
             background-color: $default-green;
+            flex-direction: column;
+
+            .box-title {
+                padding: 30px 0;
+            }
 
             .box-btn {
                 display: none;
@@ -235,7 +240,11 @@
             background-color: $default-green;
 
             .list-quantifier-text {
-                flex-direction: row;
+                flex-direction: column;
+
+                p {
+                    padding: 30px 0;
+                }
 
                 span {
                     display: none;
@@ -249,6 +258,20 @@
                     }
                 }
             }
+        }
+
+        .buttonToTop {
+            @include setDisplay(flex, nowrap, center, center);
+            width: 100%;
+            margin: 10px auto;
+            padding: 20px;
+            border: 0;
+            outline: 0;
+            background-color: $default-orange;
+            color: $bg-color;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 20px;
         }
     }
 }

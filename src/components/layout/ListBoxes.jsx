@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import ListBoxesSingle from './ListBoxesSingle';
 import ListBoxesQuantifierSingle from './ListBoxesQuantifierSingle';
+import ButtonToTop from './ButtonToTop';
 import axios from 'axios';
 import LocalStorageContext from '../../context/localStorageContext';
 
@@ -10,6 +11,7 @@ const ListBoxes = () => {
     const { hasItems, getItems, quantities } = localStorageContext;
 
     const [products, setProducts] = useState([]);
+    const [scrollToTop, setScrollToTop] = useState(false);
 
     useEffect(() => {
         onLoad();
@@ -19,10 +21,10 @@ const ListBoxes = () => {
 
     const onLoad = async () => {
         const res = await axios.get('utils/products.json');
-
-        let products = res.data;
+        const products = res.data;
 
         setProducts(products);
+        setScrollToTop(true);
     };
 
     return (
@@ -44,6 +46,8 @@ const ListBoxes = () => {
                               />
                           );
                       })}
+
+                {scrollToTop ? <ButtonToTop /> : ''}
             </div>
         </section>
     );
