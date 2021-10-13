@@ -1,6 +1,6 @@
 # market-list using React
 
-This is a refactored project from the [grocery list](https://lukaofirst.github.io/grocery-list/) using React.
+Live Project: [market-list](https://market-list-lake.vercel.app/)
 
 Personal project that you can store product's quantities based on a grocery list
 
