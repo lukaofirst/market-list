@@ -1,14 +1,14 @@
 import React, { useContext, useEffect } from 'react';
 import { FaSave, FaTrash } from 'react-icons/fa';
-import LocalStorageContext from '../../context/localStorageContext';
+import { LocalStorageContext } from '../../context/localStorageContext';
 import Alert from './Alert';
 import AlertToFinish from './AlertToFinish';
 
 const ActionButtons = () => {
-    const localStorageContext = useContext(LocalStorageContext);
+    const localStorageCtx = useContext(LocalStorageContext);
 
     const { hasItems, alert, alertToFinish, getItems, addItems, deleteItems } =
-        localStorageContext;
+        localStorageCtx;
 
     useEffect(() => {
         getItems();

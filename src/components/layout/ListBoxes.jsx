@@ -3,12 +3,12 @@ import ListBoxesSingle from './ListBoxesSingle';
 import ListBoxesQuantifierSingle from './ListBoxesQuantifierSingle';
 import ButtonToTop from './ButtonToTop';
 import axios from 'axios';
-import LocalStorageContext from '../../context/localStorageContext';
+import { LocalStorageContext } from '../../context/localStorageContext';
 
 const ListBoxes = () => {
-    const localStorageContext = useContext(LocalStorageContext);
+    const localStorageCtx = useContext(LocalStorageContext);
 
-    const { hasItems, getItems, quantities } = localStorageContext;
+    const { hasItems, getItems, quantities } = localStorageCtx;
 
     const [products, setProducts] = useState([]);
     const [scrollToTop, setScrollToTop] = useState(false);
