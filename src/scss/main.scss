@@ -186,7 +186,7 @@
             }
         }
 
-        .list-quantifier-single {
+        .product-to-take-single {
             width: 100%;
             margin: 10px 0;
             height: 300px;
@@ -196,7 +196,7 @@
             @include setBackground($default-gray);
             @include setDisplay(flex, wrap, center, center);
 
-            .list-quantifier-text {
+            .product-to-take-text {
                 color: $bg-color;
                 @include setDisplay(flex, wrap, center, center);
                 flex-direction: column;
@@ -238,10 +238,10 @@
             }
         }
 
-        .takedItem2 {
+        .takedItem {
             background-color: $default-green;
 
-            .list-quantifier-text {
+            .product-to-take-text {
                 flex-direction: column;
 
                 p {

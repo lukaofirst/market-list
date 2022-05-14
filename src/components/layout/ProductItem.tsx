@@ -41,17 +41,11 @@ const ProductItem = ({ hasItems, product }: IProductItem) => {
 
     return (
         <div className={`product-item ${takedItem ? 'takedItem' : ''}`}>
-            {!hasItems && (
-                <div className='box-title'>
-                    <span
-                        ref={
-                            productNameRef as MutableRefObject<HTMLSpanElement>
-                        }
-                    >
-                        {product.name}
-                    </span>
-                </div>
-            )}
+            <div className='box-title'>
+                <span ref={productNameRef as MutableRefObject<HTMLSpanElement>}>
+                    {product.name}
+                </span>
+            </div>
             <div className='box-btn'>
                 <button className='minus-btn' onClick={onClick}>
                     <FaMinus />

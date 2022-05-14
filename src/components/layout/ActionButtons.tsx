@@ -7,7 +7,14 @@ import AlertToFinish from './WarnAlert';
 const ActionButtons = () => {
     const marketContextCtx = useContext(MarketContext);
 
-    const { hasItems, alert, warnAlert, getProductsFromLS } = marketContextCtx;
+    const {
+        hasItems,
+        alert,
+        warnAlert,
+        getProductsFromLS,
+        saveBasketOnLS,
+        deleteBasketFromLS,
+    } = marketContextCtx;
 
     useEffect(() => {
         getProductsFromLS();
@@ -18,11 +25,14 @@ const ActionButtons = () => {
         <div className='action-buttons'>
             <div className='container'>
                 {hasItems === false ? (
-                    <button className='save-changes'>
+                    <button className='save-changes' onClick={saveBasketOnLS}>
                         <FaSave /> Salvar
                     </button>
                 ) : (
-                    <button className='delete-changes'>
+                    <button
+                        className='delete-changes'
+                        onClick={deleteBasketFromLS}
+                    >
                         <FaTrash /> Apagar
                     </button>
                 )}

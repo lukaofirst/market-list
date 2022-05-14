@@ -6,20 +6,23 @@ import ProductQuantity from './models/ProductQuantity';
 interface IMarketContext {
     getProductsFromLS: () => void;
     addProductToBasket: (item: ProductQuantity) => void;
+    saveBasketOnLS: () => void;
+    deleteBasketFromLS: () => void;
     hasItems: boolean;
     products: Product[];
+    productsFromLS: ProductQuantity[];
     alert: boolean;
     warnAlert: boolean;
 }
 
 export const MarketContext = createContext<IMarketContext>({
     getProductsFromLS: () => {},
-    // saveItems: (item: Product) => {},
-    // addItems: () => {},
-    // deleteItems: () => {},
     addProductToBasket: () => {},
+    saveBasketOnLS: () => {},
+    deleteBasketFromLS: () => {},
     hasItems: false,
     products: [],
+    productsFromLS: [],
     alert: false,
     warnAlert: false,
 });
@@ -31,9 +34,8 @@ interface IMarketProvider {
 const MarketProvider = (props: IMarketProvider) => {
     const [hasItems, setHasItems] = useState<boolean>(false);
     const [products, setProducts] = useState<Product[]>([]);
-    const [productsQuantity, setProductsQuantity] = useState<ProductQuantity[]>(
-        []
-    );
+    const [productsFromLS, setProductsFromLS] = useState<ProductQuantity[]>([]);
+    const [basket, setBasket] = useState<ProductQuantity[]>([]);
     const [alert, setAlert] = useState<boolean>(false);
     const [warnAlert, setWarnAlert] = useState<boolean>(false);
 
@@ -58,20 +60,21 @@ const MarketProvider = (props: IMarketProvider) => {
         return () => clearTimeout(timeout);
     }, [alert, warnAlert]);
 
-    // Get items from LocalStorage
+    // Get products from LocalStorage
     const getProductsFromLS = () => {
         const buyList = localStorage.getItem('BuyList');
         if (buyList === null) {
-            setProducts([]);
+            setProductsFromLS([]);
             setHasItems(false);
         } else {
             setHasItems(true);
-            setProducts(JSON.parse(`${buyList}`));
+            setProductsFromLS(JSON.parse(buyList));
         }
     };
 
+    // Add product to basket
     const addProductToBasket = (arr: ProductQuantity) => {
-        setProductsQuantity((prevState) => {
+        setBasket((prevState) => {
             const prodItemExist = prevState.find(
                 (item) => item.name === arr.name
             );
@@ -81,65 +84,36 @@ const MarketProvider = (props: IMarketProvider) => {
         });
     };
 
-    // // Save items on LocalStorage
-    // const saveItems = (item: Product) => {
-    //     if (localStorage.getItem('BuyList') === null) {
-    //         items = [];
-    //     } else {
-    //         items = JSON.parse(localStorage.getItem('BuyList'));
-    //     }
+    // Save basket on localStorage
+    const saveBasketOnLS = () => {
+        const buyList = localStorage.getItem('BuyList');
 
-    //     items.push(item);
+        if (buyList === null) {
+            setProducts([]);
+        } else {
+            setProducts(JSON.parse(buyList));
+        }
 
-    //     localStorage.setItem('BuyList', JSON.stringify(items));
+        localStorage.setItem('BuyList', JSON.stringify(basket));
+        window.location.reload();
+    };
 
-    //     window.location.reload();
-    // };
-
-    // // Add items on LocalStorage
-    // const addItems = () => {
-    //     let quantifierValues = document.querySelectorAll('#quantifier');
-    //     let boxesSingle = document.querySelectorAll('.product-item');
-    //     let boxesSingleTaked = document.querySelectorAll(
-    //         '.product-item.takedItem'
-    //     );
-
-    //     quantifierValues.forEach((quantifier: any) => {
-    //         if (boxesSingle.length !== boxesSingleTaked.length) {
-    //             setAlert(true);
-    //         } else {
-    //             saveItems(quantifier.value);
-    //         }
-    //     });
-    // };
-
-    // // Delete items from LocalStorage
-    // const deleteItems = () => {
-    //     let quantifierSingle = document.querySelectorAll(
-    //         '.list-quantifier-single'
-    //     );
-    //     let quantifierSingleTaked = document.querySelectorAll(
-    //         '.list-quantifier-single.takedItem2'
-    //     );
-
-    //     if (quantifierSingle.length !== quantifierSingleTaked.length) {
-    //         setWarnAlert(true);
-    //     } else {
-    //         if (window.confirm('Você deseja apagar os dados salvos?')) {
-    //             localStorage.clear();
-    //             window.location.reload();
-    //         }
-    //     }
-    // };
+    // Delete basket from localStorage
+    const deleteBasketFromLS = () => {
+        if (window.confirm('Você deseja apagar os dados salvos?')) {
+            localStorage.clear();
+            window.location.reload();
+        }
+    };
 
     const contextValue = {
-        //addItems,
-        //saveItems,
-        //deleteItems,
         getProductsFromLS,
         addProductToBasket,
+        saveBasketOnLS,
+        deleteBasketFromLS,
         hasItems,
         products,
+        productsFromLS,
         alert,
         warnAlert,
     };
