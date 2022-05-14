@@ -34,7 +34,7 @@ export const Header = () => {
         // eslint-disable-next-line
     }, [timer]);
 
-    const addZeros = (n) => {
+    const addZeros = (n: string) => {
         return (parseInt(n, 10) < 10 ? '0' : '') + n;
     };
 
@@ -63,16 +63,18 @@ export const Header = () => {
                         <div className='date'>
                             <FaRegCalendarAlt />
                             <span>
-                                {addZeros(date)}/{addZeros(month)}/
-                                {addZeros(year)}
+                                {addZeros(date.toString())}/
+                                {addZeros(month.toString())}/
+                                {addZeros(year.toString())}
                             </span>
                         </div>
                     </div>
                     <div className='hours'>
                         <FaRegClock />
                         <span>
-                            {addZeros(hours)}:{addZeros(minutes)}:
-                            {addZeros(seconds)}
+                            {addZeros(hours.toString())}:
+                            {addZeros(minutes.toString())}:
+                            {addZeros(seconds.toString())}
                         </span>
                     </div>
                 </div>

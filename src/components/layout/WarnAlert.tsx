@@ -1,7 +1,7 @@
 import React from 'react';
 
-const AlertToFinish = () => {
+const WarnAlert = () => {
     return <div className='alertToFinish'>A lista ainda não está completa</div>;
 };
 
-export default AlertToFinish;
+export default WarnAlert;

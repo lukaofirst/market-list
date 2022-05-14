@@ -90,14 +90,14 @@
     }
 }
 
-.list-boxes {
+.product-list {
     padding: 0 2% 50px;
 
     .container {
         width: 100%;
         @include setDisplay(flex, wrap, center, center);
 
-        .list-box-single {
+        .product-item {
             width: 100%;
             margin: 10px 0;
             padding: 0 2%;
@@ -126,6 +126,7 @@
                     cursor: pointer;
                     @include setDisplay(flex, wrap, center, center);
                     color: $bg-color;
+                    border: 0;
 
                     svg {
                         font-size: 2rem;
@@ -157,6 +158,7 @@
                     transition: 0.4s ease;
                     color: $default-gray;
                     transition: 0.4s ease;
+                    border: 0;
 
                     svg {
                         font-size: 2.3rem;

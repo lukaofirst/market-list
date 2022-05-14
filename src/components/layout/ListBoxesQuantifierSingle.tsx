@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaCheck } from 'react-icons/fa';
 
-const ListBoxesQuantifierSingle = (props) => {
+const ListBoxesQuantifierSingle = (props: any) => {
     const [takedItem2, setTakedItem2] = useState(false);
 
     const toggleClassName = () => {

@@ -1,17 +1,16 @@
 import React, { useContext, useEffect } from 'react';
 import { FaSave, FaTrash } from 'react-icons/fa';
-import { LocalStorageContext } from '../../context/localStorageContext';
+import { MarketContext } from '../../context/marketContext';
 import Alert from './Alert';
-import AlertToFinish from './AlertToFinish';
+import AlertToFinish from './WarnAlert';
 
 const ActionButtons = () => {
-    const localStorageCtx = useContext(LocalStorageContext);
+    const marketContextCtx = useContext(MarketContext);
 
-    const { hasItems, alert, alertToFinish, getItems, addItems, deleteItems } =
-        localStorageCtx;
+    const { hasItems, alert, warnAlert, getProductsFromLS } = marketContextCtx;
 
     useEffect(() => {
-        getItems();
+        getProductsFromLS();
         // eslint-disable-next-line
     }, []);
 
@@ -19,16 +18,16 @@ const ActionButtons = () => {
         <div className='action-buttons'>
             <div className='container'>
                 {hasItems === false ? (
-                    <button className='save-changes' onClick={addItems}>
+                    <button className='save-changes'>
                         <FaSave /> Salvar
                     </button>
                 ) : (
-                    <button className='delete-changes' onClick={deleteItems}>
+                    <button className='delete-changes'>
                         <FaTrash /> Apagar
                     </button>
                 )}
                 {alert ? <Alert /> : ''}
-                {alertToFinish ? <AlertToFinish /> : ''}
+                {warnAlert ? <AlertToFinish /> : ''}
             </div>
         </div>
     );
