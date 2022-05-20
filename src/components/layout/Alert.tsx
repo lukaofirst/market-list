@@ -1,7 +1,9 @@
-import React from 'react';
+interface IAlert {
+    message: string;
+}
 
-const Alert = () => {
-    return <div className='alert'>Faltam produtos a serem adicionados</div>;
+const Alert = ({ message }: IAlert) => {
+    return <div className='alert'>{message}</div>;
 };
 
 export default Alert;

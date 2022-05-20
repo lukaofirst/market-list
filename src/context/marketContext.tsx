@@ -12,7 +12,6 @@ interface IMarketContext {
     products: Product[];
     productsFromLS: ProductQuantity[];
     alert: boolean;
-    warnAlert: boolean;
 }
 
 export const MarketContext = createContext<IMarketContext>({
@@ -24,7 +23,6 @@ export const MarketContext = createContext<IMarketContext>({
     products: [],
     productsFromLS: [],
     alert: false,
-    warnAlert: false,
 });
 
 interface IMarketProvider {
@@ -37,7 +35,6 @@ const MarketProvider = (props: IMarketProvider) => {
     const [productsFromLS, setProductsFromLS] = useState<ProductQuantity[]>([]);
     const [basket, setBasket] = useState<ProductQuantity[]>([]);
     const [alert, setAlert] = useState<boolean>(false);
-    const [warnAlert, setWarnAlert] = useState<boolean>(false);
 
     useEffect(() => {
         setProducts(productsData);
@@ -45,20 +42,15 @@ const MarketProvider = (props: IMarketProvider) => {
 
     useEffect(() => {
         let timeout: NodeJS.Timeout;
+
         if (alert) {
             timeout = setTimeout(() => {
                 setAlert(false);
             }, 3000);
         }
 
-        if (warnAlert) {
-            timeout = setTimeout(() => {
-                setWarnAlert(false);
-            }, 3000);
-        }
-
         return () => clearTimeout(timeout);
-    }, [alert, warnAlert]);
+    }, [alert]);
 
     // Get products from LocalStorage
     const getProductsFromLS = () => {
@@ -86,16 +78,12 @@ const MarketProvider = (props: IMarketProvider) => {
 
     // Save basket on localStorage
     const saveBasketOnLS = () => {
-        const buyList = localStorage.getItem('BuyList');
-
-        if (buyList === null) {
-            setProducts([]);
+        if (basket.length !== 0) {
+            localStorage.setItem('BuyList', JSON.stringify(basket));
+            window.location.reload();
         } else {
-            setProducts(JSON.parse(buyList));
+            setAlert(true);
         }
-
-        localStorage.setItem('BuyList', JSON.stringify(basket));
-        window.location.reload();
     };
 
     // Delete basket from localStorage
@@ -115,7 +103,6 @@ const MarketProvider = (props: IMarketProvider) => {
         products,
         productsFromLS,
         alert,
-        warnAlert,
     };
 
     return (

@@ -1,52 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { FaRegCalendarAlt, FaRegClock } from 'react-icons/fa';
+import initClock from '../../utils/clock';
 
 export const Header = () => {
-    let today = new Date();
-
     let [timer, setTimer] = useState({
-        hours: 0,
-        minutes: 0,
-        seconds: 0,
-        day: 0,
-        date: 0,
-        month: 0,
-        year: 0,
+        hours: '00:00:00',
+        date: '00/00/0000',
+        day: '',
     });
 
-    let { hours, minutes, seconds, day, date, month, year } = timer;
+    let { hours, day, date } = timer;
 
     useEffect(() => {
         const interval = setInterval(() => {
             setTimer({
-                hours: today.getHours(),
-                minutes: today.getMinutes(),
-                seconds: today.getSeconds(),
-                day: today.getDay(),
-                date: today.getDate(),
-                month: today.getMonth() + 1,
-                year: today.getFullYear(),
+                hours: initClock('hours'),
+                date: initClock('date'),
+                day: initClock('day'),
             });
-        }, 100);
+        }, 500);
 
         return () => clearInterval(interval);
-
-        // eslint-disable-next-line
     }, [timer]);
-
-    const addZeros = (n: string) => {
-        return (parseInt(n, 10) < 10 ? '0' : '') + n;
-    };
-
-    const dayNames = [
-        'Domingo',
-        'Segunda-Feira',
-        'Terça-feira',
-        'Quarta-feira',
-        'Quinta-feira',
-        'Sexta-feira',
-        'Sábado',
-    ];
 
     return (
         <header className='main-header'>
@@ -57,25 +32,17 @@ export const Header = () => {
                 <div id='header-time'>
                     <div className='dayAndDate'>
                         <div className='day'>
-                            <span>{dayNames[day]}</span>
+                            <span>{day}</span>
                         </div>
 
                         <div className='date'>
                             <FaRegCalendarAlt />
-                            <span>
-                                {addZeros(date.toString())}/
-                                {addZeros(month.toString())}/
-                                {addZeros(year.toString())}
-                            </span>
+                            <span>{date}</span>
                         </div>
                     </div>
                     <div className='hours'>
                         <FaRegClock />
-                        <span>
-                            {addZeros(hours.toString())}:
-                            {addZeros(minutes.toString())}:
-                            {addZeros(seconds.toString())}
-                        </span>
+                        <span>{hours}</span>
                     </div>
                 </div>
             </div>

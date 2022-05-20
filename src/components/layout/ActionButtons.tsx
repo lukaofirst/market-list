@@ -1,8 +1,7 @@
-import React, { useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { FaSave, FaTrash } from 'react-icons/fa';
 import { MarketContext } from '../../context/marketContext';
 import Alert from './Alert';
-import AlertToFinish from './WarnAlert';
 
 const ActionButtons = () => {
     const marketContextCtx = useContext(MarketContext);
@@ -10,7 +9,6 @@ const ActionButtons = () => {
     const {
         hasItems,
         alert,
-        warnAlert,
         getProductsFromLS,
         saveBasketOnLS,
         deleteBasketFromLS,
@@ -36,8 +34,7 @@ const ActionButtons = () => {
                         <FaTrash /> Apagar
                     </button>
                 )}
-                {alert ? <Alert /> : ''}
-                {warnAlert ? <AlertToFinish /> : ''}
+                {alert && <Alert message='Selecione pelo menos 1 produto' />}
             </div>
         </div>
     );
