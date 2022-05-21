@@ -8,7 +8,7 @@ const ButtonToTop = () => {
 
     return (
         <div className='buttonToTop' onClick={toTop}>
-            Voltar ao início
+            VOLTAR AO INÍCIO
         </div>
     );
 };

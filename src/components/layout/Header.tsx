@@ -1,6 +1,8 @@
+import { Box, Container, Stack, Typography } from '@mui/material';
 import { useState, useEffect } from 'react';
-import { FaRegCalendarAlt, FaRegClock } from 'react-icons/fa';
 import initClock from '../../utils/clock';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 export const Header = () => {
     let [timer, setTimer] = useState({
@@ -24,29 +26,57 @@ export const Header = () => {
     }, [timer]);
 
     return (
-        <header className='main-header'>
-            <div className='container'>
-                <div className='header-title'>
-                    <h3>Lista de Compras</h3>
-                </div>
-                <div id='header-time'>
-                    <div className='dayAndDate'>
-                        <div className='day'>
-                            <span>{day}</span>
-                        </div>
-
-                        <div className='date'>
-                            <FaRegCalendarAlt />
-                            <span>{date}</span>
-                        </div>
-                    </div>
-                    <div className='hours'>
-                        <FaRegClock />
-                        <span>{hours}</span>
-                    </div>
-                </div>
-            </div>
-        </header>
+        <Box component='header' className='main-header'>
+            <Container maxWidth='xs'>
+                <Box pb={3}>
+                    <Typography textAlign='center' variant='h4'>
+                        Lista de Compras
+                    </Typography>
+                </Box>
+                <Stack
+                    direction='row'
+                    justifyContent='space-around'
+                    alignItems='center'
+                    spacing={8}
+                    pb={1}
+                >
+                    <Box>
+                        <Box>
+                            <Typography variant='h5' textAlign='center'>
+                                {day}
+                            </Typography>
+                        </Box>
+                        <Stack
+                            display='flex'
+                            justifyContent='center'
+                            alignItems='center'
+                            className='date'
+                            flexDirection='row'
+                        >
+                            <CalendarMonthIcon
+                                sx={{ fontSize: '1.7rem', mr: 1 }}
+                            />
+                            <Typography variant='h6'>{date}</Typography>
+                        </Stack>
+                    </Box>
+                    <Box
+                        display='flex'
+                        flexDirection='row'
+                        alignItems='center'
+                        className='hours'
+                    >
+                        <AccessTimeIcon sx={{ fontSize: '1.7rem', mr: 1 }} />
+                        <Typography
+                            variant='h5'
+                            textAlign='center'
+                            sx={{ mt: '1.5px' }}
+                        >
+                            {hours}
+                        </Typography>
+                    </Box>
+                </Stack>
+            </Container>
+        </Box>
     );
 };
 

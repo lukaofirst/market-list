@@ -1,21 +1,23 @@
-import React from 'react';
+import { Box, Container, Link, Typography } from '@mui/material';
 
 const Footer = () => {
     return (
-        <footer>
-            <div className='container'>
-                <h4>
+        <Box component='footer'>
+            <Container className='container'>
+                <Typography variant='body1' textAlign='center' color='white'>
                     Desenvolvido por{' '}
-                    <a
+                    <Link
                         href='https://github.com/lukaofirst'
                         target='_blank'
                         rel='noreferrer'
+                        fontWeight='bold'
+                        sx={{ color: '#27b150', textDecoration: 'none' }}
                     >
                         Lucas Macedo
-                    </a>
-                </h4>
-            </div>
-        </footer>
+                    </Link>
+                </Typography>
+            </Container>
+        </Box>
     );
 };
 

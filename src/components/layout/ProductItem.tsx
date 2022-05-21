@@ -1,3 +1,4 @@
+import { Box, Typography } from '@mui/material';
 import { MutableRefObject, useContext, useRef, useState } from 'react';
 import { FaMinus, FaPlus, FaCheck } from 'react-icons/fa';
 import { MarketContext } from '../../context/marketContext';
@@ -40,13 +41,17 @@ const ProductItem = ({ hasItems, product }: IProductItem) => {
     };
 
     return (
-        <div className={`product-item ${takedItem ? 'takedItem' : ''}`}>
-            <div className='box-title'>
-                <span ref={productNameRef as MutableRefObject<HTMLSpanElement>}>
+        <Box className={`product-item ${takedItem ? 'takedItem' : ''}`}>
+            <Box className='box-title'>
+                <Typography
+                    ref={productNameRef as MutableRefObject<HTMLSpanElement>}
+                    variant='h4'
+                    fontSize='2.3rem'
+                >
                     {product.name}
-                </span>
-            </div>
-            <div className='box-btn'>
+                </Typography>
+            </Box>
+            <Box className='box-btn'>
                 <button className='minus-btn' onClick={onClick}>
                     <FaMinus />
                 </button>
@@ -62,13 +67,13 @@ const ProductItem = ({ hasItems, product }: IProductItem) => {
                 <button className='plus-btn' onClick={onClick}>
                     <FaPlus />
                 </button>
-            </div>
-            <div id='checkbox'>
+            </Box>
+            <Box id='checkbox'>
                 <button className='box-checkbox' onClick={checkboxHandler}>
                     <FaCheck />
                 </button>
-            </div>
-        </div>
+            </Box>
+        </Box>
     );
 };
 

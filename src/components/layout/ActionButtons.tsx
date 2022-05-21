@@ -1,7 +1,8 @@
+import { Box, Container } from '@mui/material';
 import { useContext, useEffect } from 'react';
 import { FaSave, FaTrash } from 'react-icons/fa';
 import { MarketContext } from '../../context/marketContext';
-import Alert from './Alert';
+import AlertAppComponent from './AlertComp';
 
 const ActionButtons = () => {
     const marketContextCtx = useContext(MarketContext);
@@ -20,8 +21,8 @@ const ActionButtons = () => {
     }, []);
 
     return (
-        <div className='action-buttons'>
-            <div className='container'>
+        <Box className='action-buttons'>
+            <Container maxWidth='xs' className='container'>
                 {hasItems === false ? (
                     <button className='save-changes' onClick={saveBasketOnLS}>
                         <FaSave /> Salvar
@@ -34,9 +35,11 @@ const ActionButtons = () => {
                         <FaTrash /> Apagar
                     </button>
                 )}
-                {alert && <Alert message='Selecione pelo menos 1 produto' />}
-            </div>
-        </div>
+                {alert && (
+                    <AlertAppComponent message='Selecione pelo menos 1 produto' />
+                )}
+            </Container>
+        </Box>
     );
 };
 
