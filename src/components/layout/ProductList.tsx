@@ -13,7 +13,6 @@ const ProductList = () => {
     const [scrollToTop, setScrollToTop] = useState(false);
 
     useEffect(() => {
-        //getItems();
         setScrollToTop(true);
         // eslint-disable-next-line
     }, []);

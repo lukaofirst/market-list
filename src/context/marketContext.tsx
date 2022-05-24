@@ -12,6 +12,7 @@ interface IMarketContext {
     products: Product[];
     productsFromLS: ProductQuantity[];
     alert: boolean;
+    basket: ProductQuantity[];
 }
 
 export const MarketContext = createContext<IMarketContext>({
@@ -23,6 +24,7 @@ export const MarketContext = createContext<IMarketContext>({
     products: [],
     productsFromLS: [],
     alert: false,
+    basket: [],
 });
 
 interface IMarketProvider {
@@ -88,10 +90,8 @@ const MarketProvider = (props: IMarketProvider) => {
 
     // Delete basket from localStorage
     const deleteBasketFromLS = () => {
-        if (window.confirm('Você deseja apagar os dados salvos?')) {
-            localStorage.clear();
-            window.location.reload();
-        }
+        localStorage.clear();
+        window.location.reload();
     };
 
     const contextValue = {
@@ -103,6 +103,7 @@ const MarketProvider = (props: IMarketProvider) => {
         products,
         productsFromLS,
         alert,
+        basket,
     };
 
     return (
