@@ -1,6 +1,4 @@
-import React from 'react';
-
-const ButtonToTop = () => {
+const BtnToTop = () => {
     const toTop = () => {
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
@@ -13,4 +11,4 @@ const ButtonToTop = () => {
     );
 };
 
-export default ButtonToTop;
+export default BtnToTop;

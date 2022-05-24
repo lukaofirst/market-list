@@ -1,14 +1,14 @@
 import { Box, Container } from '@mui/material';
 import { useContext, useEffect, useState } from 'react';
 import { MarketContext } from '../../context/marketContext';
-import AlertAppComponent from './AlertComp';
-import ReviewListModal from './ReviewListModal';
+import AlertAppComponent from '../utility/AlertComp';
+import ReviewListModal from '../utility/ReviewListModal';
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import DeleteIcon from '@mui/icons-material/Delete';
-import ClearListModal from './ClearListModal';
+import ClearListModal from '../utility/ClearListModal';
 import ReactDOM from 'react-dom';
 
-const ActionButtons = () => {
+const ActionBtns = () => {
     const marketContextCtx = useContext(MarketContext);
 
     const [openReviewList, setOpenReviewList] = useState<boolean>(false);
@@ -72,4 +72,4 @@ const ActionButtons = () => {
     );
 };
 
-export default ActionButtons;
+export default ActionBtns;

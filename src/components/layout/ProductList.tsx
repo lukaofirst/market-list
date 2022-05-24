@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from 'react';
 import ProductItem from './ProductItem';
-import ButtonToTop from './ButtonToTop';
+import BtnToTop from '../utility/BtnToTop';
 import { MarketContext } from '../../context/marketContext';
 import ProductItemToTake from './ProductItemToTake';
 import { Box, Container } from '@mui/material';
@@ -34,7 +34,7 @@ const ProductList = () => {
                               key={product.id}
                           />
                       ))}
-                {scrollToTop ? <ButtonToTop /> : ''}
+                {scrollToTop ? <BtnToTop /> : ''}
             </Container>
         </Box>
     );
