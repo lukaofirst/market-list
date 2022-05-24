@@ -57,7 +57,7 @@ const ClearListModal = ({ open, toggleOpenModal }: IModalComp) => {
                         fullWidth
                         color='error'
                         variant='contained'
-                        sx={{ mt: 3 }}
+                        sx={{ mt: 3, p: 2, borderRadius: '20px' }}
                     >
                         Deletar Lista
                     </Button>

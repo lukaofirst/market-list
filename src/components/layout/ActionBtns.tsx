@@ -3,10 +3,9 @@ import { useContext, useEffect, useState } from 'react';
 import { MarketContext } from '../../context/marketContext';
 import AlertAppComponent from '../utility/AlertComp';
 import ReviewListModal from '../utility/ReviewListModal';
-import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
-import DeleteIcon from '@mui/icons-material/Delete';
 import ClearListModal from '../utility/ClearListModal';
 import ReactDOM from 'react-dom';
+import BtnComp from '../utility/BtnComp';
 
 const ActionBtns = () => {
     const marketContextCtx = useContext(MarketContext);
@@ -34,19 +33,19 @@ const ActionBtns = () => {
             <Box className='action-buttons'>
                 <Container maxWidth='xs' className='container'>
                     {hasItems === false ? (
-                        <button
-                            className='save-changes'
+                        <BtnComp
+                            color='success'
+                            text='Salvar'
+                            icon='grocery'
                             onClick={toggleOpenReviewListModal}
-                        >
-                            <LocalGroceryStoreIcon /> Salvar
-                        </button>
+                        />
                     ) : (
-                        <button
-                            className='delete-changes'
+                        <BtnComp
+                            color='error'
+                            text='Apagar'
+                            icon='trash'
                             onClick={toggleOpenClearListModal}
-                        >
-                            <DeleteIcon /> Apagar
-                        </button>
+                        />
                     )}
                     {alert && (
                         <AlertAppComponent message='Selecione pelo menos 1 produto' />

@@ -23,13 +23,14 @@ const ReviewList = () => {
                     maxWidth: '100%',
                     marginY: 3,
                     maxHeight: '400px',
+                    borderRadius: '20px',
                 }}
             >
                 <Table aria-label='review list'>
                     <TableHead>
                         <TableRow
                             sx={{
-                                backgroundColor: '#1E1E1E',
+                                backgroundColor: '#535353',
                             }}
                         >
                             <TableCell sx={{ color: 'white' }}>
@@ -73,8 +74,9 @@ const ReviewList = () => {
                 color='success'
                 variant='contained'
                 onClick={saveBasketOnLS}
+                sx={{ p: 2, borderRadius: '20px' }}
             >
-                Salvar Lista
+                <Typography color='white'>Salvar Lista</Typography>
             </Button>
         </>
     );

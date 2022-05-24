@@ -56,7 +56,8 @@ const ReviewListModal = ({ open, toggleOpenModal, basket }: IModalComp) => {
                         <Typography
                             variant='h5'
                             textAlign='center'
-                            sx={{ py: 2, color: '#D32F2F' }}
+                            color='#ce1654'
+                            sx={{ py: 2 }}
                         >
                             A sua lista está vazia!
                         </Typography>

@@ -3,7 +3,7 @@ import { Box, Container, Link, Typography } from '@mui/material';
 const Footer = () => {
     return (
         <Box component='footer'>
-            <Container className='container'>
+            <Container>
                 <Typography variant='body1' textAlign='center' color='white'>
                     Desenvolvido por{' '}
                     <Link
