@@ -6,6 +6,7 @@ import ReviewListModal from './ReviewListModal';
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ClearListModal from './ClearListModal';
+import ReactDOM from 'react-dom';
 
 const ActionButtons = () => {
     const marketContextCtx = useContext(MarketContext);
@@ -29,37 +30,45 @@ const ActionButtons = () => {
     }, []);
 
     return (
-        <Box className='action-buttons'>
-            <Container maxWidth='xs' className='container'>
-                {hasItems === false ? (
-                    <button
-                        className='save-changes'
-                        onClick={toggleOpenReviewListModal}
-                    >
-                        <LocalGroceryStoreIcon /> Salvar
-                    </button>
-                ) : (
-                    <button
-                        className='delete-changes'
-                        onClick={toggleOpenClearListModal}
-                    >
-                        <DeleteIcon /> Apagar
-                    </button>
-                )}
-                {alert && (
-                    <AlertAppComponent message='Selecione pelo menos 1 produto' />
-                )}
-            </Container>
-            <ReviewListModal
-                open={openReviewList}
-                toggleOpenModal={toggleOpenReviewListModal}
-                basket={basket}
-            />
-            <ClearListModal
-                open={openClearList}
-                toggleOpenModal={toggleOpenClearListModal}
-            />
-        </Box>
+        <>
+            <Box className='action-buttons'>
+                <Container maxWidth='xs' className='container'>
+                    {hasItems === false ? (
+                        <button
+                            className='save-changes'
+                            onClick={toggleOpenReviewListModal}
+                        >
+                            <LocalGroceryStoreIcon /> Salvar
+                        </button>
+                    ) : (
+                        <button
+                            className='delete-changes'
+                            onClick={toggleOpenClearListModal}
+                        >
+                            <DeleteIcon /> Apagar
+                        </button>
+                    )}
+                    {alert && (
+                        <AlertAppComponent message='Selecione pelo menos 1 produto' />
+                    )}
+                </Container>
+            </Box>
+            {ReactDOM.createPortal(
+                <ReviewListModal
+                    open={openReviewList}
+                    toggleOpenModal={toggleOpenReviewListModal}
+                    basket={basket}
+                />,
+                document.getElementById('review-list-modal') as HTMLDivElement
+            )}
+            {ReactDOM.createPortal(
+                <ClearListModal
+                    open={openClearList}
+                    toggleOpenModal={toggleOpenClearListModal}
+                />,
+                document.getElementById('clear-list-modal') as HTMLDivElement
+            )}
+        </>
     );
 };
 
