@@ -1,15 +1,16 @@
 import { Box, Typography } from '@mui/material';
 import { MutableRefObject, useContext, useRef, useState } from 'react';
-import { FaMinus, FaPlus, FaCheck } from 'react-icons/fa';
+import { FaCheck } from 'react-icons/fa';
 import { MarketContext } from '../../context/marketContext';
 import Product from '../../context/models/Product';
+import BtnIncrementComp from '../utility/ProductItem/BtnIncrementComp';
+import { MouseEvent } from 'react';
 
 interface IProductItem {
-    hasItems: boolean;
     product: Product;
 }
 
-const ProductItem = ({ hasItems, product }: IProductItem) => {
+const ProductItem = ({ product }: IProductItem) => {
     const productNameRef = useRef<HTMLSpanElement>();
     const productQuantityRef = useRef<HTMLInputElement>();
 
@@ -18,8 +19,8 @@ const ProductItem = ({ hasItems, product }: IProductItem) => {
 
     const { addProductToBasket } = useContext(MarketContext);
 
-    const onClick = (e: any) => {
-        if (e.currentTarget.classList.contains('plus-btn')) {
+    const onClick = (e: MouseEvent<HTMLButtonElement>) => {
+        if (e.currentTarget.getAttribute('data-btn') === 'plus') {
             setCount(count + 1);
         } else {
             setCount(count - 1);
@@ -31,13 +32,13 @@ const ProductItem = ({ hasItems, product }: IProductItem) => {
     };
 
     const checkboxHandler = () => {
+        setTakedItem((prevState) => !prevState);
+
         addProductToBasket({
             id: product.id,
             name: productNameRef.current?.textContent!,
             quantity: +productQuantityRef.current?.value!,
         });
-
-        setTakedItem((prevState) => !prevState);
     };
 
     return (
@@ -52,9 +53,7 @@ const ProductItem = ({ hasItems, product }: IProductItem) => {
                 </Typography>
             </Box>
             <Box className='box-btn'>
-                <button className='minus-btn' onClick={onClick}>
-                    <FaMinus />
-                </button>
+                <BtnIncrementComp icon='minus' onClick={onClick} />
                 <input
                     type='number'
                     id='quantifier'
@@ -64,9 +63,7 @@ const ProductItem = ({ hasItems, product }: IProductItem) => {
                     }
                     disabled
                 />
-                <button className='plus-btn' onClick={onClick}>
-                    <FaPlus />
-                </button>
+                <BtnIncrementComp icon='plus' onClick={onClick} />
             </Box>
             <Box id='checkbox'>
                 <button className='box-checkbox' onClick={checkboxHandler}>

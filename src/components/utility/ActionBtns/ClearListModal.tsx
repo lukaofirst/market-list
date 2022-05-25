@@ -1,7 +1,7 @@
 import { Backdrop, Box, Button, Fade, Modal } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { useContext } from 'react';
-import { MarketContext } from '../../context/marketContext';
+import { MarketContext } from '../../../context/marketContext';
 
 const style = {
     position: 'absolute' as 'absolute',

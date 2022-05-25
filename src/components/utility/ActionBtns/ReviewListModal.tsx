@@ -1,7 +1,7 @@
 import { Backdrop, Box, Button, Fade, Modal, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import ProductQuantity from '../../context/models/ProductQuantity';
-import ReviewList from '../layout/ReviewList';
+import ReviewList from '../../layout/ReviewList';
+import ProductQuantity from '../../../context/models/ProductQuantity';
 
 const style = {
     position: 'absolute' as 'absolute',

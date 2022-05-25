@@ -11,7 +11,6 @@ interface IMarketContext {
     hasItems: boolean;
     products: Product[];
     productsFromLS: ProductQuantity[];
-    alert: boolean;
     basket: ProductQuantity[];
 }
 
@@ -23,7 +22,6 @@ export const MarketContext = createContext<IMarketContext>({
     hasItems: false,
     products: [],
     productsFromLS: [],
-    alert: false,
     basket: [],
 });
 
@@ -36,23 +34,10 @@ const MarketProvider = (props: IMarketProvider) => {
     const [products, setProducts] = useState<Product[]>([]);
     const [productsFromLS, setProductsFromLS] = useState<ProductQuantity[]>([]);
     const [basket, setBasket] = useState<ProductQuantity[]>([]);
-    const [alert, setAlert] = useState<boolean>(false);
 
     useEffect(() => {
         setProducts(productsData);
     }, []);
-
-    useEffect(() => {
-        let timeout: NodeJS.Timeout;
-
-        if (alert) {
-            timeout = setTimeout(() => {
-                setAlert(false);
-            }, 3000);
-        }
-
-        return () => clearTimeout(timeout);
-    }, [alert]);
 
     // Get products from LocalStorage
     const getProductsFromLS = () => {
@@ -83,8 +68,6 @@ const MarketProvider = (props: IMarketProvider) => {
         if (basket.length !== 0) {
             localStorage.setItem('BuyList', JSON.stringify(basket));
             window.location.reload();
-        } else {
-            setAlert(true);
         }
     };
 
@@ -102,7 +85,6 @@ const MarketProvider = (props: IMarketProvider) => {
         hasItems,
         products,
         productsFromLS,
-        alert,
         basket,
     };
 

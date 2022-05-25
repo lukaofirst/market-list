@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from 'react';
 import ProductItem from './ProductItem';
-import BtnToTop from '../utility/BtnToTop';
+import BtnToTop from '../utility/ProductList/BtnToTop';
 import { MarketContext } from '../../context/marketContext';
 import ProductItemToTake from './ProductItemToTake';
 import { Box, Container } from '@mui/material';
@@ -28,11 +28,7 @@ const ProductList = () => {
                           />
                       ))
                     : products.map((product) => (
-                          <ProductItem
-                              hasItems={hasItems}
-                              product={product}
-                              key={product.id}
-                          />
+                          <ProductItem product={product} key={product.id} />
                       ))}
                 {scrollToTop ? <BtnToTop /> : ''}
             </Container>

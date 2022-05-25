@@ -1,11 +1,10 @@
 import { Box, Container } from '@mui/material';
 import { useContext, useEffect, useState } from 'react';
 import { MarketContext } from '../../context/marketContext';
-import AlertAppComponent from '../utility/AlertComp';
-import ReviewListModal from '../utility/ReviewListModal';
-import ClearListModal from '../utility/ClearListModal';
 import ReactDOM from 'react-dom';
-import BtnComp from '../utility/BtnComp';
+import BtnComp from '../utility/ActionBtns/BtnComp';
+import ClearListModal from '../utility/ActionBtns/ClearListModal';
+import ReviewListModal from '../utility/ActionBtns/ReviewListModal';
 
 const ActionBtns = () => {
     const marketContextCtx = useContext(MarketContext);
@@ -21,7 +20,7 @@ const ActionBtns = () => {
         setOpenClearList((prevState) => !prevState);
     };
 
-    const { hasItems, alert, getProductsFromLS, basket } = marketContextCtx;
+    const { hasItems, getProductsFromLS, basket } = marketContextCtx;
 
     useEffect(() => {
         getProductsFromLS();
@@ -46,9 +45,6 @@ const ActionBtns = () => {
                             icon='trash'
                             onClick={toggleOpenClearListModal}
                         />
-                    )}
-                    {alert && (
-                        <AlertAppComponent message='Selecione pelo menos 1 produto' />
                     )}
                 </Container>
             </Box>
