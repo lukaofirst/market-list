@@ -26,7 +26,7 @@ export const Header = () => {
     }, [timer]);
 
     return (
-        <Box component='header' className='main-header'>
+        <Box component='header' paddingY='15px' paddingX='2%'>
             <Container maxWidth='xs'>
                 <Box pb={3}>
                     <Typography textAlign='center' variant='h4'>
@@ -37,7 +37,7 @@ export const Header = () => {
                     direction='row'
                     justifyContent='space-around'
                     alignItems='center'
-                    spacing={8}
+                    spacing={4}
                     pb={1}
                 >
                     <Box>

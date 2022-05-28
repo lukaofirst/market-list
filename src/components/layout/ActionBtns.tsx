@@ -29,8 +29,8 @@ const ActionBtns = () => {
 
     return (
         <>
-            <Box className='action-buttons'>
-                <Container maxWidth='xs' className='container'>
+            <Box paddingBottom='15px' textAlign='center'>
+                <Container maxWidth='xs'>
                     {hasItems === false ? (
                         <BtnComp
                             color='success'

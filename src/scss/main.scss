@@ -1,155 +1,132 @@
 @import 'config';
 @import 'reset';
-@import 'mobile';
-
-.main-header {
-    padding: 15px 2%;
-
-    .header-title {
-        text-align: center;
-        padding-bottom: 20px;
-
-        h3 {
-            font-size: 2rem;
-        }
-    }
-
-    #header-time {
-        font-size: 1.3rem;
-        @include setDisplay(flex, wrap, space-around, center);
-
-        .dayAndDate {
-            padding: 10px;
-            text-align: center;
-
-            .day {
-                margin-bottom: 10px;
-            }
-
-            .date {
-                @include setDisplay(flex, wrap, center, center);
-                svg {
-                    font-size: 1.5rem;
-                    margin-right: 5px;
-                }
-            }
-        }
-
-        .hours {
-            @include setDisplay(flex, wrap, space-around, center);
-            padding: 10px;
-
-            svg {
-                font-size: 1.5rem;
-                margin-right: 5px;
-            }
-        }
-    }
-}
-
-.action-buttons {
-    padding-bottom: 15px;
-
-    .container {
-        @include setDisplay(flex, wrap, center, center);
-
-        .save-changes,
-        .delete-changes {
-            @include setDisplay(flex, wrap, center, center);
-            border-radius: 10px;
-            font-size: 1.4rem;
-            margin: 5px 15px;
-            padding: 15px 20px;
-            border: 0;
-            outline: 0;
-            color: $bg-color;
-            cursor: pointer;
-
-            svg {
-                margin-right: 5px;
-            }
-        }
-
-        .save-changes {
-            background-color: $default-green;
-        }
-
-        .delete-changes {
-            background-color: $default-red;
-        }
-
-        .alert,
-        .alertToFinish {
-            padding-top: 15px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            text-align: center;
-            color: $default-red;
-        }
-    }
-}
 
 .product-list {
     padding: 0 2% 50px;
 
-    .container {
+    .product-item {
         width: 100%;
+        margin: 10px 0;
+        padding: 0 2%;
+        height: 300px;
+        border-radius: 30px;
+        @include setBackground($default-gray);
         @include setDisplay(flex, wrap, center, center);
 
-        .product-item {
+        .box-title {
+            font-size: 2.3rem;
+            padding: 0 2% 10px 2%;
+            color: $bg-color;
+            text-align: center;
+        }
+
+        .box-btn {
             width: 100%;
-            margin: 10px 0;
-            padding: 0 2%;
-            height: 300px;
-            border-radius: 30px;
-            @include setBackground($default-gray);
             @include setDisplay(flex, wrap, center, center);
 
-            .box-title {
-                font-size: 2.3rem;
-                padding: 0 2% 10px 2%;
+            .minus-btn,
+            .plus-btn {
+                width: 65px;
+                height: 65px;
+                background-color: $default-orange;
+                border-radius: 50%;
+                cursor: pointer;
+                @include setDisplay(flex, wrap, center, center);
                 color: $bg-color;
-                text-align: center;
+                border: 0;
+
+                svg {
+                    font-size: 2rem;
+                }
             }
 
-            .box-btn {
-                width: 100%;
+            #quantifier {
+                width: 60px;
+                font-size: 2.3rem;
+                text-align: center;
+                margin: 5px;
+                border: 0;
+                outline: 0;
+                background-color: $default-gray;
+                color: $bg-color;
+            }
+        }
+
+        #checkbox {
+            .box-checkbox {
+                width: 80px;
+                height: 80px;
+                margin: 10px;
+                padding: 10px;
+                border-radius: 50%;
                 @include setDisplay(flex, wrap, center, center);
+                background-color: $bg-color;
+                cursor: pointer;
+                transition: 0.4s ease;
+                color: $default-gray;
+                transition: 0.4s ease;
+                border: 0;
 
-                .minus-btn,
-                .plus-btn {
-                    width: 65px;
-                    height: 65px;
-                    background-color: $default-orange;
-                    border-radius: 50%;
-                    cursor: pointer;
-                    @include setDisplay(flex, wrap, center, center);
-                    color: $bg-color;
-                    border: 0;
-
-                    svg {
-                        font-size: 2rem;
-                    }
-                }
-
-                #quantifier {
-                    width: 60px;
+                svg {
                     font-size: 2.3rem;
-                    text-align: center;
-                    margin: 5px;
-                    border: 0;
-                    outline: 0;
-                    background-color: $default-gray;
-                    color: $bg-color;
                 }
+            }
+        }
+    }
+
+    .takedItem {
+        background-color: $default-green;
+        flex-direction: column;
+
+        .box-title {
+            padding: 30px 0;
+        }
+
+        .box-btn {
+            display: none;
+        }
+
+        #checkbox {
+            .box-checkbox {
+                color: $default-green;
+            }
+        }
+    }
+
+    .product-to-take-single {
+        width: 100%;
+        margin: 10px 0;
+        height: 300px;
+        border-radius: 30px;
+        padding: 0 5px;
+        text-align: center;
+        @include setBackground($default-gray);
+        @include setDisplay(flex, wrap, center, center);
+
+        .product-to-take-text {
+            color: $bg-color;
+            @include setDisplay(flex, wrap, center, center);
+            flex-direction: column;
+
+            p {
+                font-size: 2.5rem;
+            }
+
+            span {
+                @include setDisplay(flex, wrap, center, space-around);
+                padding: 10px 20px;
+                margin: 10px 0;
+                background-color: $default-red;
+                border-radius: 20px;
+                font-size: 2.5rem;
             }
 
             #checkbox {
                 .box-checkbox {
                     width: 80px;
                     height: 80px;
-                    margin: 10px;
                     padding: 10px;
+                    margin: 10px;
                     border-radius: 50%;
                     @include setDisplay(flex, wrap, center, center);
                     background-color: $bg-color;
@@ -157,7 +134,6 @@
                     transition: 0.4s ease;
                     color: $default-gray;
                     transition: 0.4s ease;
-                    border: 0;
 
                     svg {
                         font-size: 2.3rem;
@@ -165,130 +141,29 @@
                 }
             }
         }
+    }
 
-        .takedItem {
-            background-color: $default-green;
+    .takedItem {
+        background-color: $default-green;
+
+        .product-to-take-text {
             flex-direction: column;
 
-            .box-title {
+            p {
                 padding: 30px 0;
             }
 
-            .box-btn {
+            span {
                 display: none;
             }
+        }
 
-            #checkbox {
-                .box-checkbox {
+        #checkbox {
+            .box-checkbox {
+                svg {
                     color: $default-green;
                 }
             }
-        }
-
-        .product-to-take-single {
-            width: 100%;
-            margin: 10px 0;
-            height: 300px;
-            border-radius: 30px;
-            padding: 0 5px;
-            text-align: center;
-            @include setBackground($default-gray);
-            @include setDisplay(flex, wrap, center, center);
-
-            .product-to-take-text {
-                color: $bg-color;
-                @include setDisplay(flex, wrap, center, center);
-                flex-direction: column;
-
-                p {
-                    font-size: 2.5rem;
-                }
-
-                span {
-                    @include setDisplay(flex, wrap, center, space-around);
-                    padding: 10px 20px;
-                    margin: 10px 0;
-                    background-color: $default-red;
-                    border-radius: 20px;
-                    font-size: 2.5rem;
-                }
-
-                #checkbox {
-                    .box-checkbox {
-                        width: 80px;
-                        height: 80px;
-                        padding: 10px;
-                        margin: 10px;
-                        border-radius: 50%;
-                        @include setDisplay(flex, wrap, center, center);
-                        background-color: $bg-color;
-                        cursor: pointer;
-                        transition: 0.4s ease;
-                        color: $default-gray;
-                        transition: 0.4s ease;
-
-                        svg {
-                            font-size: 2.3rem;
-                        }
-                    }
-                }
-            }
-        }
-
-        .takedItem {
-            background-color: $default-green;
-
-            .product-to-take-text {
-                flex-direction: column;
-
-                p {
-                    padding: 30px 0;
-                }
-
-                span {
-                    display: none;
-                }
-            }
-
-            #checkbox {
-                .box-checkbox {
-                    svg {
-                        color: $default-green;
-                    }
-                }
-            }
-        }
-
-        .buttonToTop {
-            @include setDisplay(flex, nowrap, center, center);
-            width: 100%;
-            margin: 10px auto;
-            padding: 20px;
-            border: 0;
-            outline: 0;
-            background-color: $default-orange;
-            color: $bg-color;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 20px;
-        }
-    }
-}
-
-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    padding: 5px;
-    background-color: #535353;
-
-    h4 {
-        text-align: center;
-        color: #e7e7e7;
-
-        a {
-            text-decoration: none;
-            color: #27b150;
         }
     }
 }

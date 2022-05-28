@@ -19,7 +19,7 @@ const ProductList = () => {
 
     return (
         <Box component='section' className='product-list'>
-            <Container maxWidth='xs' className='container'>
+            <Container maxWidth='xs'>
                 {hasItems
                     ? productsFromLS.map((product) => (
                           <ProductItemToTake
