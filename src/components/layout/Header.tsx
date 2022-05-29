@@ -20,7 +20,7 @@ export const Header = () => {
                 date: initClock('date'),
                 day: initClock('day'),
             });
-        }, 500);
+        }, 1000);
 
         return () => clearInterval(interval);
     }, [timer]);

@@ -22,7 +22,7 @@ const ReviewList = () => {
                 sx={{
                     maxWidth: '100%',
                     marginY: 3,
-                    maxHeight: '400px',
+                    maxHeight: '300px',
                     borderRadius: '20px',
                 }}
             >

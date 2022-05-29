@@ -6,6 +6,7 @@ import ProductQuantity from './models/ProductQuantity';
 interface IMarketContext {
     getProductsFromLS: () => void;
     addProductToBasket: (item: ProductQuantity) => void;
+    removeProductFromBasket: (item: ProductQuantity) => void;
     saveBasketOnLS: () => void;
     deleteBasketFromLS: () => void;
     hasItems: boolean;
@@ -17,6 +18,7 @@ interface IMarketContext {
 export const MarketContext = createContext<IMarketContext>({
     getProductsFromLS: () => {},
     addProductToBasket: () => {},
+    removeProductFromBasket: () => {},
     saveBasketOnLS: () => {},
     deleteBasketFromLS: () => {},
     hasItems: false,
@@ -52,15 +54,15 @@ const MarketProvider = (props: IMarketProvider) => {
     };
 
     // Add product to basket
-    const addProductToBasket = (arr: ProductQuantity) => {
-        setBasket((prevState) => {
-            const prodItemExist = prevState.find(
-                (item) => item.name === arr.name
-            );
+    const addProductToBasket = (productItemData: ProductQuantity) => {
+        setBasket((prevState) => [...prevState, productItemData]);
+    };
 
-            if (!prodItemExist) return [...prevState, arr];
-            else return prevState.filter((item) => item.name !== arr.name);
-        });
+    // Remove product from basket
+    const removeProductFromBasket = (productItemData: ProductQuantity) => {
+        setBasket((prevState) =>
+            prevState.filter((item) => item.id !== productItemData.id)
+        );
     };
 
     // Save basket on localStorage
@@ -80,6 +82,7 @@ const MarketProvider = (props: IMarketProvider) => {
     const contextValue = {
         getProductsFromLS,
         addProductToBasket,
+        removeProductFromBasket,
         saveBasketOnLS,
         deleteBasketFromLS,
         hasItems,
