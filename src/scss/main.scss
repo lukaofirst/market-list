@@ -24,22 +24,6 @@
             width: 100%;
             @include setDisplay(flex, wrap, center, center);
 
-            .minus-btn,
-            .plus-btn {
-                width: 65px;
-                height: 65px;
-                background-color: $default-orange;
-                border-radius: 50%;
-                cursor: pointer;
-                @include setDisplay(flex, wrap, center, center);
-                color: $bg-color;
-                border: 0;
-
-                svg {
-                    font-size: 2rem;
-                }
-            }
-
             #quantifier {
                 width: 60px;
                 font-size: 2.3rem;

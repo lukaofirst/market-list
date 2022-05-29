@@ -33,12 +33,12 @@ const ReviewList = () => {
                                 backgroundColor: '#535353',
                             }}
                         >
-                            <TableCell sx={{ color: 'white' }}>
+                            <TableCell sx={{ color: '#e7e7e7' }}>
                                 Produto
                             </TableCell>
                             <TableCell
                                 sx={{
-                                    color: 'white',
+                                    color: '#e7e7e7',
                                     textAlign: 'center',
                                 }}
                             >
