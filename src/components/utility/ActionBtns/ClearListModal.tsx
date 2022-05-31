@@ -24,6 +24,11 @@ interface IModalComp {
 const ClearListModal = ({ open, toggleOpenModal }: IModalComp) => {
     const { deleteBasketFromLS } = useContext(MarketContext);
 
+    const handleClearList = () => {
+        toggleOpenModal();
+        deleteBasketFromLS();
+    };
+
     return (
         <Modal
             open={open}
@@ -31,7 +36,7 @@ const ClearListModal = ({ open, toggleOpenModal }: IModalComp) => {
             closeAfterTransition
             BackdropComponent={Backdrop}
             BackdropProps={{
-                timeout: 500,
+                timeout: 300,
             }}
         >
             <Fade in={open}>
@@ -53,7 +58,7 @@ const ClearListModal = ({ open, toggleOpenModal }: IModalComp) => {
                         </Button>
                     </Box>
                     <Button
-                        onClick={deleteBasketFromLS}
+                        onClick={handleClearList}
                         fullWidth
                         color='error'
                         variant='contained'

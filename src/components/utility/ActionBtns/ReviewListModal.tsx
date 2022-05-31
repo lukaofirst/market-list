@@ -1,14 +1,14 @@
 import { Backdrop, Box, Button, Fade, Modal, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import ReviewList from '../../layout/ReviewList';
-import ProductQuantity from '../../../context/models/ProductQuantity';
+import Product from '../../../context/models/Product';
 
 const style = {
     position: 'absolute' as 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 'fit-content',
+    width: '300px',
     bgcolor: 'background.paper',
     boxShadow: 24,
     borderRadius: '20px',
@@ -19,7 +19,7 @@ const style = {
 interface IModalComp {
     open: boolean;
     toggleOpenModal: () => void;
-    basket: ProductQuantity[];
+    basket: Product[];
 }
 
 const ReviewListModal = ({ open, toggleOpenModal, basket }: IModalComp) => {

@@ -1,5 +1,5 @@
 import { Box, Container } from '@mui/material';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { MarketContext } from '../../context/marketContext';
 import ReactDOM from 'react-dom';
 import BtnComp from '../utility/ActionBtns/BtnComp';
@@ -20,12 +20,7 @@ const ActionBtns = () => {
         setOpenClearList((prevState) => !prevState);
     };
 
-    const { hasItems, getProductsFromLS, basket } = marketContextCtx;
-
-    useEffect(() => {
-        getProductsFromLS();
-        // eslint-disable-next-line
-    }, []);
+    const { hasItems, basket } = marketContextCtx;
 
     return (
         <>

@@ -1,18 +1,16 @@
 import { useState, useEffect, createContext } from 'react';
 import Product from './models/Product';
 import productsData from '../productsData/productsData';
-import ProductQuantity from './models/ProductQuantity';
 
 interface IMarketContext {
     getProductsFromLS: () => void;
-    addProductToBasket: (item: ProductQuantity) => void;
-    removeProductFromBasket: (item: ProductQuantity) => void;
+    addProductToBasket: (item: Product) => void;
+    removeProductFromBasket: (item: Product) => void;
     saveBasketOnLS: () => void;
     deleteBasketFromLS: () => void;
     hasItems: boolean;
     products: Product[];
-    productsFromLS: ProductQuantity[];
-    basket: ProductQuantity[];
+    basket: Product[];
 }
 
 export const MarketContext = createContext<IMarketContext>({
@@ -23,7 +21,6 @@ export const MarketContext = createContext<IMarketContext>({
     deleteBasketFromLS: () => {},
     hasItems: false,
     products: [],
-    productsFromLS: [],
     basket: [],
 });
 
@@ -33,39 +30,35 @@ interface IMarketProvider {
 
 const MarketProvider = (props: IMarketProvider) => {
     const [hasItems, setHasItems] = useState<boolean>(false);
-    const [products, setProducts] = useState<Product[]>([]);
-    const [productsFromLS, setProductsFromLS] = useState<ProductQuantity[]>([]);
-    const [basket, setBasket] = useState<ProductQuantity[]>([]);
+    const [products, setProducts] = useState<Product[]>(productsData);
+    const [basket, setBasket] = useState<Product[]>([]);
 
     useEffect(() => {
-        setProducts(productsData);
+        getProductsFromLS();
     }, []);
 
-    // Get products from LocalStorage
     const getProductsFromLS = () => {
         const buyList = localStorage.getItem('BuyList');
+
         if (buyList === null) {
-            setProductsFromLS([]);
             setHasItems(false);
+            setProducts(productsData);
         } else {
             setHasItems(true);
-            setProductsFromLS(JSON.parse(buyList));
+            setProducts(JSON.parse(buyList));
         }
     };
 
-    // Add product to basket
-    const addProductToBasket = (productItemData: ProductQuantity) => {
+    const addProductToBasket = (productItemData: Product) => {
         setBasket((prevState) => [...prevState, productItemData]);
     };
 
-    // Remove product from basket
-    const removeProductFromBasket = (productItemData: ProductQuantity) => {
+    const removeProductFromBasket = (productItemData: Product) => {
         setBasket((prevState) =>
             prevState.filter((item) => item.id !== productItemData.id)
         );
     };
 
-    // Save basket on localStorage
     const saveBasketOnLS = () => {
         if (basket.length !== 0) {
             localStorage.setItem('BuyList', JSON.stringify(basket));
@@ -73,10 +66,10 @@ const MarketProvider = (props: IMarketProvider) => {
         }
     };
 
-    // Delete basket from localStorage
     const deleteBasketFromLS = () => {
         localStorage.clear();
-        window.location.reload();
+        setHasItems(false);
+        setProducts(productsData);
     };
 
     const contextValue = {
@@ -87,7 +80,6 @@ const MarketProvider = (props: IMarketProvider) => {
         deleteBasketFromLS,
         hasItems,
         products,
-        productsFromLS,
         basket,
     };
 
