@@ -1,6 +1,7 @@
-import { useState, useEffect, createContext } from 'react';
+import { useState, createContext, useEffect } from 'react';
 import Product from './models/Product';
 import productsData from '../productsData/productsData';
+import LoadingComp from '../components/utility/LoadingComp';
 
 interface IMarketContext {
     getProductsFromLS: () => void;
@@ -11,6 +12,7 @@ interface IMarketContext {
     hasItems: boolean;
     products: Product[];
     basket: Product[];
+    loading: boolean;
 }
 
 export const MarketContext = createContext<IMarketContext>({
@@ -22,6 +24,7 @@ export const MarketContext = createContext<IMarketContext>({
     hasItems: false,
     products: [],
     basket: [],
+    loading: true,
 });
 
 interface IMarketProvider {
@@ -32,9 +35,12 @@ const MarketProvider = (props: IMarketProvider) => {
     const [hasItems, setHasItems] = useState<boolean>(false);
     const [products, setProducts] = useState<Product[]>(productsData);
     const [basket, setBasket] = useState<Product[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        getProductsFromLS();
+        setTimeout(() => {
+            setLoading(false);
+        }, 300);
     }, []);
 
     const getProductsFromLS = () => {
@@ -81,7 +87,10 @@ const MarketProvider = (props: IMarketProvider) => {
         hasItems,
         products,
         basket,
+        loading,
     };
+
+    if (loading) return <LoadingComp message='Carregando informações...' />;
 
     return (
         <MarketContext.Provider value={contextValue}>

@@ -44,7 +44,7 @@ const ProductItem = ({ product }: IProductItem) => {
             } else {
                 removeProductFromBasket(productItemData);
             }
-        }, 500);
+        }, 300);
     };
 
     return (

@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import ProductItem from './ProductItem';
 import BtnToTop from '../utility/ProductList/BtnToTop';
 import { MarketContext } from '../../context/marketContext';
@@ -7,12 +7,11 @@ import { Box, Container } from '@mui/material';
 const ProductList = () => {
     const marketContextCtx = useContext(MarketContext);
 
-    const { products } = marketContextCtx;
-
-    const [scrollToTop, setScrollToTop] = useState(false);
+    const { products, getProductsFromLS } = marketContextCtx;
 
     useEffect(() => {
-        setScrollToTop(true);
+        getProductsFromLS();
+        // eslint-disable-next-line
     }, []);
 
     return (
@@ -21,7 +20,7 @@ const ProductList = () => {
                 {products.map((product) => (
                     <ProductItem product={product} key={product.id} />
                 ))}
-                {scrollToTop ? <BtnToTop /> : ''}
+                <BtnToTop />
             </Container>
         </Box>
     );

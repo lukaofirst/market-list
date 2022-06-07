@@ -7,7 +7,7 @@ import ClearListModal from '../utility/ActionBtns/ClearListModal';
 import ReviewListModal from '../utility/ActionBtns/ReviewListModal';
 
 const ActionBtns = () => {
-    const marketContextCtx = useContext(MarketContext);
+    const { hasItems, basket } = useContext(MarketContext);
 
     const [openReviewList, setOpenReviewList] = useState<boolean>(false);
     const [openClearList, setOpenClearList] = useState<boolean>(false);
@@ -19,8 +19,6 @@ const ActionBtns = () => {
     const toggleOpenClearListModal = () => {
         setOpenClearList((prevState) => !prevState);
     };
-
-    const { hasItems, basket } = marketContextCtx;
 
     return (
         <>

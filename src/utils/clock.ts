@@ -11,10 +11,6 @@ export default function initClock(timeType: 'hours' | 'date' | 'day') {
         'Sábado',
     ];
 
-    setInterval(() => {
-        today.toString();
-    }, 1000);
-
     if (timeType === 'hours') {
         return today.toLocaleTimeString('pt-BR');
     } else if (timeType === 'date') {

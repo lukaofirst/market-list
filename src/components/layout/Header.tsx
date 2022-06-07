@@ -14,16 +14,14 @@ export const Header = () => {
     let { hours, day, date } = timer;
 
     useEffect(() => {
-        const interval = setInterval(() => {
+        setInterval(() => {
             setTimer({
                 hours: initClock('hours'),
                 date: initClock('date'),
                 day: initClock('day'),
             });
-        }, 1000);
-
-        return () => clearInterval(interval);
-    }, [timer]);
+        }, 1);
+    }, []);
 
     return (
         <Box component='header' paddingY='15px' paddingX='2%'>
