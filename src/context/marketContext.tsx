@@ -40,7 +40,7 @@ const MarketProvider = (props: IMarketProvider) => {
     useEffect(() => {
         setTimeout(() => {
             setLoading(false);
-        }, 300);
+        }, 1500);
     }, []);
 
     const getProductsFromLS = () => {
