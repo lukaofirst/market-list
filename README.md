@@ -1,7 +1,5 @@
 <h1>Market List</h1>
 
-Live Project: [market-list](https://market-list-lake.vercel.app/)
-
 <h2><img src='https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/36/country-4x3/us.png'/> ENG</h2>
 
 -   Personal project that you can store product's quantities based on a grocery list
